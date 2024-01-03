@@ -11,7 +11,7 @@ export default function RootLayout({ children }) {
   return (
     <html>
       <body className='bg-[#fff]'>
-      <div id="wrap" class='w-[374px] h-screen bg-[#ececec] my-0 mx-auto overflow-hidden relative overflow-y-scroll pb-[60px]'>
+      <div id="wrap" className='w-[374px] h-screen bg-[#ececec] my-0 mx-auto overflow-hidden relative overflow-y-scroll pb-[60px]'>
       <CheckToday />
       <TodayTalk />
           {children}
