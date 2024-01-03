@@ -1,0 +1,8 @@
+export default function CheckToday(){
+  return (
+    <div className="w-[calc(100%-10px)] p-3 bg-[#fff] mx-auto rounded-[14px] flex justify-between text-sm absolute top-[10px] left-[50%] translate-x-[-50%]"> 
+      <p>오늘 목표까지 0% </p>
+      <p>0/3</p>  
+    </div>
+  )
+}

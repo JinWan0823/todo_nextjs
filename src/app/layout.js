@@ -1,5 +1,6 @@
+import CheckToday from '@/components/main/CheckToday'
 import './globals.css'
-
+import TodayTalk from '@/components/main/TodayTalk'
 
 export const metadata = {
   title: 'TodoList',
@@ -9,7 +10,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html>
-      <body>{children}</body>
+      <body className='bg-[#fff]'>
+      <div id="wrap" className='w-[374px] h-screen bg-[#ececec] my-0 mx-auto overflow-hidden relative overflow-y-scroll pb-[60px]'>
+      <CheckToday />
+      <TodayTalk />
+          {children}
+        </div>
+      </body>
     </html>
   )
 }
