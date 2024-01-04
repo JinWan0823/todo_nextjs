@@ -1,48 +1,56 @@
 "use client";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 
 import Card from "../main/Card";
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
+import CardToday from "./CardToday";
 
-export default function CalendarWrap(){
-  const [lastDate,setLastDate] = useState(0);
+export default function CalendarWrap() {
   const [selectMonth, setSelectMonth] = useState(0);
+  const [monthData, setMonthData] = useState([]);
 
+  const getData = async () => {
+    try {
+      const response = await fetch("http://localhost:9999/todolist");
+      const data = await response.json();
+      const filteredTodo = data.filter((item) => item.month === 1);
 
-  useEffect(()=>{
+      setMonthData(filteredTodo);
+      console.log(monthData);
+    } catch (error) {
+      console.error("Data Fetching Error : ", error);
+    }
+  };
+
+  useEffect(() => {
     const date = new Date();
     const month = date.getMonth() + 1;
-    date.setMonth(month,1);
-    const last = date.setDate(date.getDate() -1);
 
-    setLastDate(last)
-    setSelectMonth(month)
-  },[])
+    setSelectMonth(month);
+    getData();
+  }, [selectMonth]);
 
-  const renderSwiperSlided = () => {
-    const slides = [];
-
-    for(let i = 1; i <= lastDate ; i++){
-      slides.push(
-        <SwiperSlide key={i}><Card /></SwiperSlide>
-      )
-    }
-  }
-
+  const daysInMonth = Array.from(
+    { length: new Date(2024, selectMonth, 0).getDate() },
+    (_, index) => index + 1
+  );
 
   return (
-     <>
-      <div className='swiper-container mt-[20px]'>
-          <Swiper
-          spaceBetween={50}
-          slidesPerView={1}
-        >
-          {renderSwiperSlided()}
+    <>
+      <div className="swiper-container mt-[20px]">
+        <Swiper spaceBetween={50} slidesPerView={1}>
+          {daysInMonth.map((day, index) => {
+            const dayData = monthData.find((item) => item.date === day);
+            return (
+              <SwiperSlide key={index} className={`Day${index + 1}`}>
+                <Card item={dayData || {}}></Card>
+                <CardToday month={selectMonth} day={index + 1} />
+              </SwiperSlide>
+            );
+          })}
         </Swiper>
       </div>
-     </>
-
-
-  )
+    </>
+  );
 }
