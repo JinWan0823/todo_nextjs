@@ -5,9 +5,9 @@ export default function WriteBtn() {
   return (
     <Link
       href={"/"}
-      className="z-50 absolute bottom-2 left-auto w-[36px] h-[36px] rounded-[50%] bg-red-400 translate-x-[4px] flex items-center justify-center"
+      className="w-[30px] h-[30px] rounded-[6px] shadow-lg bg-red-400 text-[#fff] flex-center cursor-pointer mr-[4px]"
     >
-      <SlPencil className="text-lg text-[#fff]" />
+      <SlPencil className="text-md text-[#fff]" />
     </Link>
   );
 }
