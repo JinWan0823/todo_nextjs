@@ -10,14 +10,17 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html>
-      <body className="bg-[#fff]">
+      <body className="bg-[#fff] relative">
         <div
           id="wrap"
-          className="w-[374px] max-h-screen bg-[#ececec] my-0 mx-auto overflow-hidden relative overflow-y-auto pb-[60px]"
+          className="w-[374px] max-h-screen bg-[#ececec] my-0 mx-auto overflow-hidden relative overflow-y-auto  rounded-[10px]"
         >
           <CheckToday />
           <TodayTalk />
           {children}
+          <p className="text-center py-[20px] text-sm text-[#d6d6d6]">
+            Copyright © 2024 JW All rights reserved
+          </p>
         </div>
       </body>
     </html>

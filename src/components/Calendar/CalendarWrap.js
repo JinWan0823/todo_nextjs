@@ -1,14 +1,15 @@
 "use client";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-
 import Card from "../main/Card";
 import { useEffect, useState } from "react";
-import CardToday from "./CardToday";
+import BtnWrap from "../main/BtnWrap";
+import WriteBtn from "../main/WriteBtn";
 
 export default function CalendarWrap() {
   const [selectMonth, setSelectMonth] = useState(0);
   const [monthData, setMonthData] = useState([]);
+  const todayDate = new Date().getDay();
 
   const getData = async () => {
     try {
@@ -38,14 +39,25 @@ export default function CalendarWrap() {
 
   return (
     <>
-      <div className="swiper-container mt-[20px]">
-        <Swiper spaceBetween={50} slidesPerView={1}>
+      <div className="swiper-container w-[calc(100%-10px)] mx-auto">
+        <div className="flex justify-between items-center mt-[10px]">
+          <WriteBtn />
+          <BtnWrap />
+        </div>
+        <Swiper
+          spaceBetween={50}
+          slidesPerView={1}
+          initialSlide={todayDate - 1}
+        >
           {daysInMonth.map((day, index) => {
             const dayData = monthData.find((item) => item.date === day);
             return (
               <SwiperSlide key={index} className={`Day${index + 1}`}>
-                <Card item={dayData || {}}></Card>
-                <CardToday month={selectMonth} day={index + 1} />
+                <Card
+                  item={dayData || {}}
+                  month={selectMonth}
+                  day={index + 1}
+                />
               </SwiperSlide>
             );
           })}

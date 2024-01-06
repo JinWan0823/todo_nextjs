@@ -1,11 +1,9 @@
-import CalendarWrap from "@/components/Calendar/CalendarWrap"
-import WriteBtn from "@/components/main/WriteBtn";
+import CalendarWrap from "@/components/Calendar/CalendarWrap";
 
 export default function Home() {
   return (
     <>
-      <WriteBtn />
       <CalendarWrap />
     </>
-  )
+  );
 }
