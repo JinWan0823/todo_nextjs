@@ -6,26 +6,38 @@ export default function TodoList({ content, index, item }) {
   const handleDeleteList = async () => {
     try {
       const updatedContent = [...item.content]; // Create a copy of the content array
-      updatedContent.splice(index, 1);
 
-      const response = await fetch(
-        `http://localhost:9999/todolist/${item.id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            id: item.id,
-            year: item.year,
-            month: item.month,
-            date: item.date,
-            content: updatedContent,
-            success: item.success,
-          }),
-        }
-      );
-      console.log(response);
+      if(updatedContent.length === 1) {
+        const response = await fetch(`http://localhost:9999/todolist/${item.id}`,{
+          method:"DELETE",
+          headers : {
+            "Content-Type" : "application/json",
+          }
+        })
+
+        console.log(response);
+      } else {
+        updatedContent.splice(index, 1);
+
+        const response = await fetch(
+          `http://localhost:9999/todolist/${item.id}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              id: item.id,
+              year: item.year,
+              month: item.month,
+              date: item.date,
+              content: updatedContent,
+              success: item.success,
+            }),
+          }
+        );
+        console.log(response);
+      }
     } catch (error) {
       console.error("Data Fetching Error : ", error);
     }

@@ -5,9 +5,11 @@ import Card from "../main/Card";
 import { useEffect, useState } from "react";
 import BtnWrap from "../main/BtnWrap";
 import WriteBtn from "../main/WriteBtn";
+import SelectMenu from "./SelectMenu";
 
 export default function CalendarWrap() {
-  const [selectMonth, setSelectMonth] = useState(0);
+  const nowMonth = new Date().getMonth()+1;
+  const [selectMonth, setSelectMonth] = useState(nowMonth);
   const [monthData, setMonthData] = useState([]);
   const todayDate = new Date().getDay();
 
@@ -15,22 +17,17 @@ export default function CalendarWrap() {
     try {
       const response = await fetch("http://localhost:9999/todolist");
       const data = await response.json();
-      const filteredTodo = data.filter((item) => item.month === 1);
+      const filteredTodo = data.filter((item) => item.month === selectMonth);
 
       setMonthData(filteredTodo);
-      console.log(monthData);
     } catch (error) {
       console.error("Data Fetching Error : ", error);
     }
   };
 
   useEffect(() => {
-    const date = new Date();
-    const month = date.getMonth() + 1;
-
-    setSelectMonth(month);
     getData();
-  }, [selectMonth]);
+  }, [selectMonth,monthData]);
 
   const daysInMonth = Array.from(
     { length: new Date(2024, selectMonth, 0).getDate() },
@@ -41,7 +38,10 @@ export default function CalendarWrap() {
     <>
       <div className="swiper-container w-[calc(100%-10px)] mx-auto">
         <div className="flex justify-between items-center mt-[10px]">
-          <WriteBtn />
+          <div className="flex">
+            <WriteBtn />
+            <SelectMenu setSelectMonth={setSelectMonth} selectMonth={selectMonth}/>
+          </div>
           <BtnWrap />
         </div>
         <Swiper
