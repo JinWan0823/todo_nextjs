@@ -16,7 +16,7 @@ export default function SelectMenu({ setSelectMonth, selectMonth }) {
         <label className="cursor-pointer">{selectMonth}월</label>
         <ul className={`z-50 bg-[#fff] max-h-[150px] overflow-y-auto  absolute top-[30px] left-0 w-full ${showOption ? '' : 'hidden'} point-border`}>
           {opt.map((month)=>(
-             <li key={month} value={month} className="p-[8px]" onClick={(e)=>setSelectMonth(e.target.value)}>{month}</li>
+             <li key={month} value={month} className="p-[8px]" onClick={(e)=>setSelectMonth(e.target.value)}>{month}월</li>
           ))}
         </ul>
       </div>
