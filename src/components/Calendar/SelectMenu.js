@@ -12,9 +12,9 @@ export default function SelectMenu({ setSelectMonth, selectMonth }) {
 
   return (
     <>
-      <div className="relative w-[80px] p-[8px] rounded-[12px] bg-[#fff] shadow-lg cursor-pointer select-box text-sm" onClick={handleToggleOption}>
-        <label>{selectMonth}월</label>
-        <ul className={`z-50 bg-[#fff] max-h-[150px] overflow-y-auto rounded-[12px] absolute top-[30px] left-0 w-full overflow-hidden max-h-screen ${showOption ? '' : 'hidden'}`}>
+      <div className="relative w-[80px] p-[8px] rounded-[4px] bg-[#fff] shadow-lg cursor-pointer point-border select-box text-sm" onClick={handleToggleOption}>
+        <label className="cursor-pointer">{selectMonth}월</label>
+        <ul className={`z-50 bg-[#fff] max-h-[150px] overflow-y-auto  absolute top-[30px] left-0 w-full ${showOption ? '' : 'hidden'} point-border`}>
           {opt.map((month)=>(
              <li key={month} value={month} className="p-[8px]" onClick={(e)=>setSelectMonth(e.target.value)}>{month}</li>
           ))}
