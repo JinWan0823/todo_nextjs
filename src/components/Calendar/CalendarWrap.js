@@ -31,8 +31,8 @@ export default function CalendarWrap({
   };
 
   useEffect(() => {
-    getData();
     setTodayDate(1);
+    getData();
   }, [selectMonth]);
 
   useEffect(() => {

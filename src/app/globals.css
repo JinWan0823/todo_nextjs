@@ -211,6 +211,7 @@ body {
     height: 8px;
     border-radius: 50%;
     margin-right: 4px;
+    background-color: green;
   }
   .importance.Easy::before {
     background-color: green;
