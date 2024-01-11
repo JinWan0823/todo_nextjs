@@ -1,34 +1,32 @@
-'use client';
-import CardToday from '../Calendar/CardToday';
-import LinkBtn from '../main/LinkBtn';
-import SelectLevel from './SelectLevel';
-import { useEffect, useState } from 'react';
-import WriteForm from './WriteForm';
+"use client";
+import CardToday from "../Calendar/CardToday";
+import LinkBtn from "../main/LinkBtn";
+import SelectLevel from "./SelectLevel";
+import { useEffect, useState } from "react";
+import WriteForm from "./WriteForm";
 
 export default function WriteWrap({
-  setViewSection,
-  today,
+  handleViewSection,
   todayDate,
-  setTodayDate,
-  nowMonth,
   selectMonth,
   setSelectMonth,
+  getData,
 }) {
-  const getData = async (content) => {
-    console.log(content);
+  const createData = async (content) => {
     try {
       const data = await fetch(`http://localhost:9999/todolist`);
       const response = await data.json();
 
-      const filteredData = response.find((item) => item.month === selectMonth && item.date === todayDate);
-      console.log(filteredData);
+      const filteredData = response.find(
+        (item) => item.month === selectMonth && item.date === todayDate
+      );
 
       if (!filteredData) {
         // 데이터가 없는경우 post요청으로 생성
-        const writeData = await fetch('http://localhost:9999/todolist', {
-          method: 'POST',
+        const writeData = await fetch("http://localhost:9999/todolist", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({
             year: 24,
@@ -38,25 +36,46 @@ export default function WriteWrap({
             success: false,
           }),
         });
-        console.log(writeData);
       } else {
-        // 기존에 데이터가 있는경우 put으로 데이터 추가
-        console.log(filteredData);
-        return;
+        const updateData = [...filteredData.content, content];
+        const writeData = await fetch(
+          `http://localhost:9999/todolist/${filteredData.id}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              year: filteredData.year,
+              month: filteredData.month,
+              date: filteredData.date,
+              content: [...updateData],
+              success: false,
+            }),
+          }
+        );
       }
+
+      await getData();
     } catch (error) {
-      console.error('Data Fetching Error : ', error);
+      console.error("Data Fetching Error : ", error);
     }
   };
 
   return (
     <div className="w-[calc(100%-10px)] mx-auto">
       <div className="mt-[10px]">
-        <LinkBtn setViewSection={setViewSection} icon={'back'} />
+        <LinkBtn handleViewSection={handleViewSection} icon={"back"} />
       </div>
       <div className="bg-[#fff] w-full min-h-[400px] max-h-[400px] overflow-y-auto mx-auto rounded-[10px] relative shadow-lg mt-[4px] solid-border">
         <CardToday month={selectMonth} day={todayDate} />
-        <WriteForm month={selectMonth} day={todayDate} setViewSection={setViewSection} getData={getData} />
+        <WriteForm
+          selectMonth={selectMonth}
+          day={todayDate}
+          handleViewSection={handleViewSection}
+          createData={createData}
+          setSelectMonth={setSelectMonth}
+        />
       </div>
     </div>
   );

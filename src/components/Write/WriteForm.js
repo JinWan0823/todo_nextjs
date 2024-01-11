@@ -1,15 +1,15 @@
-import { useState } from 'react';
-import SelectLevel from './SelectLevel';
+import { useState } from "react";
+import SelectLevel from "./SelectLevel";
 
-export default function WriteForm({ selectMonth, todayDate, setViewSection, getData }) {
-  const [level, setLevel] = useState('easy');
-  const [title, setTitle] = useState('');
+export default function WriteForm({ handleViewSection, createData }) {
+  const [level, setLevel] = useState("easy");
+  const [title, setTitle] = useState("");
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        getData(title);
-        setViewSection((prev) => !prev);
+        createData(title);
+        handleViewSection();
       }}
       className="py-[20px] px-[10px] flex flex-col text-sm"
     >
@@ -26,7 +26,10 @@ export default function WriteForm({ selectMonth, todayDate, setViewSection, getD
           onChange={(e) => setTitle(e.target.value)}
         />
       </div>
-      <button type="submit" className="bg-red-300 text-[#fff] rounded-[4px] py-[10px] mt-[20px] font-bold">
+      <button
+        type="submit"
+        className="bg-red-300 text-[#fff] rounded-[4px] py-[10px] mt-[20px] font-bold"
+      >
         저장하기
       </button>
     </form>
