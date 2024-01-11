@@ -1,9 +1,8 @@
-'use client';
-import { FaRegTrashAlt } from 'react-icons/fa';
-import { FaCheck } from 'react-icons/fa6';
+"use client";
+import { FaRegTrashAlt } from "react-icons/fa";
+import { FaCheck } from "react-icons/fa6";
 
-export default function TodoList({ item, content, index, handleDeleteList }) {
-  console.log(content);
+export default function TodoList({ content, index, handleDeleteList }) {
   return (
     <li
       className="w-full py-[16px] px-[8px] border-[#dfdfdf] border-solid border-b-[1px] flex items-center justify-between"
@@ -16,7 +15,10 @@ export default function TodoList({ item, content, index, handleDeleteList }) {
         <button className="small-button mr-[4px] bg-green-300">
           <FaCheck />
         </button>
-        <button className="small-button bg-red-300 relative" onClick={() => handleDeleteList(index)}>
+        <button
+          className="small-button bg-red-300 relative"
+          onClick={() => handleDeleteList(index)}
+        >
           <FaRegTrashAlt />
         </button>
       </div>
