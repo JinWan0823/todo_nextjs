@@ -1,6 +1,8 @@
 "use client";
 import CalendarWrap from "@/components/Calendar/CalendarWrap";
 import WriteWrap from "@/components/Write/WriteWrap";
+import CheckToday from "@/components/main/CheckToday";
+import TodayTalk from "@/components/main/TodayTalk";
 import { useState } from "react";
 
 export default function Home() {
@@ -12,6 +14,8 @@ export default function Home() {
   const [todayDate, setTodayDate] = useState(today.getDate());
 
   const [monthData, setMonthData] = useState([]);
+  const [goalCount, setGoalCount] = useState();
+  const [countGoalList, setCountGoalList] = useState([]);
 
   const handleViewSection = async () => {
     setViewSection((prev) => !prev);
@@ -19,12 +23,21 @@ export default function Home() {
 
   const getData = async () => {
     try {
-      const response = await fetch("http://localhost:9999/todolist");
-      const data = await response.json();
-      const filteredTodo = await data.filter(
-        (item) => item.month === selectMonth
+      const response = await fetch(
+        `http://localhost:9999/todolist?month=${selectMonth}`
       );
-      setMonthData(filteredTodo);
+      const data = await response.json();
+      setMonthData(data);
+
+      const fixTodayData = await data.find(
+        (item) => item.date === today.getDate()
+      );
+
+      console.timeLog(monthData);
+
+      if (fixTodayData) {
+        setGoalCount(fixTodayData.content.length);
+      }
     } catch (error) {
       console.error("Data Fetching Error : ", error);
     }
@@ -32,6 +45,8 @@ export default function Home() {
 
   return (
     <>
+      <CheckToday goalCount={goalCount} />
+      <TodayTalk />
       {viewSection ? (
         <CalendarWrap
           handleViewSection={handleViewSection}
@@ -44,6 +59,8 @@ export default function Home() {
           viewSection={viewSection}
           monthData={monthData}
           getData={getData}
+          countGoalList={countGoalList}
+          setCountGoalList={setCountGoalList}
         />
       ) : (
         <WriteWrap

@@ -3,7 +3,13 @@ import CardToday from "../Calendar/CardToday";
 import TodoList from "../Calendar/TodoList";
 import NoList from "./NoList";
 
-export default function Card({ item, month, day }) {
+export default function Card({
+  item,
+  month,
+  day,
+  countGoalList,
+  setCountGoalList,
+}) {
   useEffect(() => {
     if (item.content) {
       const cardData = item.content;
@@ -58,13 +64,16 @@ export default function Card({ item, month, day }) {
       <CardToday month={month} day={day} />
       <ul className="min-h-[400px] max-h-[400px] overflow-y-auto " id="list">
         {todoData && item.id ? (
-          todoData.map((list, index) => (
+          todoData.map((content, index) => (
             <TodoList
-              item={item}
               key={index}
-              content={list}
+              content={content}
               index={index}
               handleDeleteList={handleDeleteList}
+              setCountGoalList={setCountGoalList}
+              countGoalList={countGoalList}
+              month={month}
+              day={day}
             ></TodoList>
           ))
         ) : (

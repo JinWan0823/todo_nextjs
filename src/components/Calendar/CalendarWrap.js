@@ -18,6 +18,8 @@ export default function CalendarWrap({
   setSelectMonth,
   monthData,
   getData,
+  countGoalList,
+  setCountGoalList,
 }) {
   useEffect(() => {
     getData();
@@ -68,7 +70,6 @@ export default function CalendarWrap({
           onSlideChange={(swiper) => {
             const newTodayDate = swiper.realIndex + 1;
             setTodayDate(newTodayDate);
-            console.log(todayDate);
           }}
         >
           {daysInMonth.map((day, index) => {
@@ -79,6 +80,8 @@ export default function CalendarWrap({
                   item={dayData || {}}
                   month={selectMonth}
                   day={index + 1}
+                  countGoalList={countGoalList}
+                  setCountGoalList={setCountGoalList}
                 />
               </SwiperSlide>
             );
