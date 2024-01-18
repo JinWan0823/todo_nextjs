@@ -32,12 +32,20 @@ export default function WriteWrap({
             year: 24,
             month: selectMonth,
             date: todayDate,
-            content: [content],
+            content: [
+              {
+                todo: content,
+                success: false,
+              },
+            ],
             success: false,
           }),
         });
       } else {
-        const updateData = [...filteredData.content, content];
+        const updateData = [
+          ...filteredData.content,
+          { todo: content, success: false },
+        ];
         const writeData = await fetch(
           `http://localhost:9999/todolist/${filteredData.id}`,
           {

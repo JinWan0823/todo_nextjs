@@ -1,5 +1,3 @@
-import CheckToday from "@/components/main/CheckToday";
-import TodayTalk from "@/components/main/TodayTalk";
 import "./globals.css";
 
 export const metadata = {
@@ -15,8 +13,6 @@ export default function RootLayout({ children }) {
           id="wrap"
           className="w-[374px] max-h-screen bg-[#ececec] my-0 mx-auto overflow-hidden relative overflow-y-auto  rounded-[10px]"
         >
-          <CheckToday />
-          <TodayTalk />
           {children}
           <p className="text-center py-[20px] text-sm text-[#d6d6d6]">
             Copyright © 2024 JW All rights reserved
