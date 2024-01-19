@@ -7,6 +7,7 @@ import BtnWrap from "../main/BtnWrap";
 import LinkBtn from "../main/LinkBtn";
 import SelectMenu from "./SelectMenu";
 import SwiperCore from "swiper";
+import DatePicker from "./DataPicker";
 
 export default function CalendarWrap({
   handleViewSection,
@@ -21,6 +22,8 @@ export default function CalendarWrap({
   countGoalList,
   setCountGoalList,
 }) {
+  const [openPicker, setOpenPicker] = useState(false);
+
   useEffect(() => {
     getData();
   }, [selectMonth]);
@@ -49,6 +52,15 @@ export default function CalendarWrap({
 
   return (
     <>
+      {openPicker && (
+        <DatePicker
+          setSelectMonth={setSelectMonth}
+          setTodayDate={setTodayDate}
+          selectMonth={selectMonth}
+          todayDate={todayDate}
+          setOpenPicker={setOpenPicker}
+        />
+      )}
       <div className="swiper-container w-[calc(100%-10px)] mx-auto">
         <div className="flex justify-between items-center mt-[10px]">
           <div className="flex">
@@ -61,7 +73,10 @@ export default function CalendarWrap({
               selectMonth={selectMonth}
             />
           </div>
-          <BtnWrap handleRefreshCalendar={handleRefreshCalendar} />
+          <BtnWrap
+            handleRefreshCalendar={handleRefreshCalendar}
+            setOpenPicker={setOpenPicker}
+          />
         </div>
         <Swiper
           spaceBetween={50}

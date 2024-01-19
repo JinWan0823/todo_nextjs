@@ -12,8 +12,6 @@ export default function TodoList({
 }) {
   const [complete, setComplete] = useState(content.success);
 
-  console.log(content, index);
-
   const handleTodoSuccess = async () => {
     try {
       const response = await fetch(
