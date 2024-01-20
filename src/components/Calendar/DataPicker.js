@@ -1,13 +1,7 @@
-import { useEffect, useState } from "react";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
+import { useEffect, useState } from 'react';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa6';
 
-export default function DatePicker({
-  setOpenPicker,
-  todayDate,
-  selectMonth,
-  setSelectMonth,
-  setTodayDate,
-}) {
+export default function DatePicker({ setOpenPicker, todayDate, selectMonth, setSelectMonth, setTodayDate }) {
   const nowDate = new Date();
   const [pickerMonth, setPickerMonth] = useState(selectMonth);
 
@@ -34,11 +28,7 @@ export default function DatePicker({
     pickerDate.setUTCFullYear(2024, pickerMonth - 1, 1);
     const currentMonth = pickerDate.getMonth();
     const firstDay = pickerDate.getDay();
-    const lastDate = new Date(
-      pickerDate.getFullYear(),
-      currentMonth + 1,
-      0
-    ).getDate();
+    const lastDate = new Date(pickerDate.getFullYear(), currentMonth + 1, 0).getDate();
 
     const calendarItems = [];
 
@@ -47,14 +37,13 @@ export default function DatePicker({
     }
 
     for (let i = 1; i <= lastDate; i++) {
+      const isToday = nowDate.getMonth() + 1 && i === nowDate.getDate();
+      const isSunday = (firstDay + i - 1) % 7 === 0;
+
       calendarItems.push(
         <div
           key={i}
-          className={`date ${
-            pickerMonth === nowDate.getMonth() + 1 && i === nowDate.getDate()
-              ? "today"
-              : ""
-          }`}
+          className={`date ${isToday ? 'today' : ''} ${isSunday ? 'sunday' : ''}`}
           onClick={() => handleDateClick(i)}
         >
           {i}
@@ -65,9 +54,7 @@ export default function DatePicker({
     const limitDay = firstDay + lastDate;
     const nextDay = Math.ceil(limitDay / 7) * 7;
     for (let i = 1; i <= nextDay - limitDay; i++) {
-      calendarItems.push(
-        <div key={`next_${i}`} className="next_month_date"></div>
-      );
+      calendarItems.push(<div key={`next_${i}`} className="next_month_date"></div>);
     }
 
     return calendarItems;
@@ -98,10 +85,7 @@ export default function DatePicker({
             <div>FRI</div>
             <div>SAT</div>
           </div>
-          <div
-            id="calendar"
-            className="calendar_body grid grid-cols-7 text-center"
-          >
+          <div id="calendar" className="calendar_body grid grid-cols-7 text-center">
             {renderCalendarBody()}
           </div>
         </div>
