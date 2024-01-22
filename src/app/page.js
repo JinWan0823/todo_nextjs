@@ -1,9 +1,9 @@
-'use client';
-import CalendarWrap from '@/components/Calendar/CalendarWrap';
-import WriteWrap from '@/components/Write/WriteWrap';
-import CheckToday from '@/components/main/CheckToday';
-import WeatherWrap from '@/components/weather/WeatherWrap';
-import { useState } from 'react';
+"use client";
+import CalendarWrap from "@/components/Calendar/CalendarWrap";
+import WriteWrap from "@/components/Write/WriteWrap";
+import CheckToday from "@/components/main/CheckToday";
+import WeatherWrap from "@/components/weather/WeatherWrap";
+import { useState } from "react";
 
 export default function Home() {
   const [viewSection, setViewSection] = useState(true);
@@ -23,11 +23,15 @@ export default function Home() {
 
   const getData = async () => {
     try {
-      const response = await fetch(`http://localhost:9999/todolist?month=${selectMonth}`);
+      const response = await fetch(
+        `http://localhost:9999/todolist?month=${selectMonth}`
+      );
       const data = await response.json();
       setMonthData(data);
 
-      const fixTodayData = await data.find((item) => item.date === today.getDate());
+      const fixTodayData = await data.find(
+        (item) => item.date === today.getDate()
+      );
 
       console.timeLog(monthData);
 
@@ -35,7 +39,7 @@ export default function Home() {
         setGoalCount(fixTodayData.content.length);
       }
     } catch (error) {
-      console.error('Data Fetching Error : ', error);
+      console.error("Data Fetching Error : ", error);
     }
   };
 
