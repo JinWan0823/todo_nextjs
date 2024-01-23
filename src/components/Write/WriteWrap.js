@@ -1,9 +1,9 @@
 "use client";
 import CardToday from "../Calendar/CardToday";
 import LinkBtn from "../main/LinkBtn";
-import SelectLevel from "./SelectLevel";
-import { useEffect, useState } from "react";
 import WriteForm from "./WriteForm";
+import { useRecoilState } from "recoil";
+import { changeValueCount } from "@/states";
 
 export default function WriteWrap({
   handleViewSection,
@@ -12,6 +12,8 @@ export default function WriteWrap({
   setSelectMonth,
   getData,
 }) {
+  const [change, setChange] = useRecoilState(changeValueCount);
+
   const createData = async (content) => {
     try {
       const data = await fetch(`http://localhost:9999/todolist`);
@@ -65,6 +67,7 @@ export default function WriteWrap({
       }
 
       await getData();
+      setChange((prev) => !prev);
     } catch (error) {
       console.error("Data Fetching Error : ", error);
     }
