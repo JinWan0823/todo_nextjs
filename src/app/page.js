@@ -14,7 +14,6 @@ export default function Home() {
   const [todayDate, setTodayDate] = useState(today.getDate());
 
   const [monthData, setMonthData] = useState([]);
-  const [goalCount, setGoalCount] = useState();
   const [countGoalList, setCountGoalList] = useState([]);
 
   const handleViewSection = async () => {
@@ -28,16 +27,6 @@ export default function Home() {
       );
       const data = await response.json();
       setMonthData(data);
-
-      const fixTodayData = await data.find(
-        (item) => item.date === today.getDate()
-      );
-
-      console.timeLog(monthData);
-
-      if (fixTodayData) {
-        setGoalCount(fixTodayData.content.length);
-      }
     } catch (error) {
       console.error("Data Fetching Error : ", error);
     }
@@ -45,7 +34,7 @@ export default function Home() {
 
   return (
     <>
-      <CheckToday goalCount={goalCount} />
+      <CheckToday />
       <WeatherWrap />
       {viewSection ? (
         <CalendarWrap

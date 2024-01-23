@@ -11,7 +11,7 @@ export default function WeatherBg({ weather }) {
     switch (true) {
       case currentHour >= 6 && currentHour < 17:
         return "/morning.png";
-      case currentHour >= 18 && currentHour < 20:
+      case currentHour >= 17 && currentHour < 20:
         return "/sunset.png";
       default:
         return "/night.png";
@@ -21,13 +21,15 @@ export default function WeatherBg({ weather }) {
   const imagePath = getImagePath();
 
   return (
-    <div className={`absolute w-full h-full top-0 left-0 z-[1] ${weather}`}>
+    <div
+      className={`absolute w-full h-full top-0 left-0 z-[1] ${weather} overflow-hidden`}
+    >
       <Image
         src={imagePath}
         alt=""
-        className="w-full"
-        layout="fill"
-        objectFit="cover"
+        width={0}
+        height={0}
+        style={{ width: "100%", height: "auto" }}
       />
     </div>
   );

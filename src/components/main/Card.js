@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import CardToday from "../Calendar/CardToday";
 import TodoList from "../Calendar/TodoList";
 import NoList from "./NoList";
+import { useRecoilState } from "recoil";
+import { changeValueCount } from "@/states";
 
 export default function Card({
   item,
@@ -18,6 +20,8 @@ export default function Card({
   }, [item.content]);
 
   const [todoData, setTodoData] = useState();
+  const [change, setChange] = useRecoilState(changeValueCount);
+
   const handleDeleteList = async (idxNum) => {
     try {
       if (todoData.length <= 1) {
@@ -54,6 +58,7 @@ export default function Card({
           }
         );
       }
+      setChange((prev) => !prev);
     } catch (error) {
       console.error("Data Fetching Error : ", error);
     }

@@ -1,7 +1,9 @@
 "use client";
+import { changeValueCount } from "@/states";
 import { useState } from "react";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FaCheck } from "react-icons/fa6";
+import { useRecoilState } from "recoil";
 
 export default function TodoList({
   content,
@@ -11,6 +13,7 @@ export default function TodoList({
   day,
 }) {
   const [complete, setComplete] = useState(content.success);
+  const [change, setChange] = useRecoilState(changeValueCount);
 
   const handleTodoSuccess = async () => {
     try {
@@ -19,8 +22,6 @@ export default function TodoList({
       );
       const dataArray = await response.json();
       const data = Array.isArray(dataArray) ? dataArray[0] : dataArray;
-
-      console.log(data);
 
       const updateSuccess = await data.content.map((item, i) => {
         if (i === index) {
@@ -46,6 +47,7 @@ export default function TodoList({
       );
 
       setComplete((prev) => !prev);
+      setChange((prev) => !prev);
     } catch (error) {
       console.error("Data Fetching Error : ", error);
     }
