@@ -11,7 +11,7 @@ export default function WeatherBg({ weather }) {
     switch (true) {
       case currentHour >= 6 && currentHour < 17:
         return "/morning.png";
-      case currentHour >= 17 && currentHour < 22:
+      case currentHour >= 18 && currentHour < 20:
         return "/sunset.png";
       default:
         return "/night.png";

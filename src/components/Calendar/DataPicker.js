@@ -1,7 +1,13 @@
-import { useEffect, useState } from 'react';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa6';
+import { useEffect, useState } from "react";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 
-export default function DatePicker({ setOpenPicker, todayDate, selectMonth, setSelectMonth, setTodayDate }) {
+export default function DatePicker({
+  setOpenPicker,
+  todayDate,
+  selectMonth,
+  setSelectMonth,
+  setTodayDate,
+}) {
   const nowDate = new Date();
   const [pickerMonth, setPickerMonth] = useState(selectMonth);
 
@@ -28,7 +34,11 @@ export default function DatePicker({ setOpenPicker, todayDate, selectMonth, setS
     pickerDate.setUTCFullYear(2024, pickerMonth - 1, 1);
     const currentMonth = pickerDate.getMonth();
     const firstDay = pickerDate.getDay();
-    const lastDate = new Date(pickerDate.getFullYear(), currentMonth + 1, 0).getDate();
+    const lastDate = new Date(
+      pickerDate.getFullYear(),
+      currentMonth + 1,
+      0
+    ).getDate();
 
     const calendarItems = [];
 
@@ -43,7 +53,9 @@ export default function DatePicker({ setOpenPicker, todayDate, selectMonth, setS
       calendarItems.push(
         <div
           key={i}
-          className={`date ${isToday ? 'today' : ''} ${isSunday ? 'sunday' : ''}`}
+          className={`date ${isToday ? "today" : ""} ${
+            isSunday ? "sunday" : ""
+          }`}
           onClick={() => handleDateClick(i)}
         >
           {i}
@@ -54,7 +66,9 @@ export default function DatePicker({ setOpenPicker, todayDate, selectMonth, setS
     const limitDay = firstDay + lastDate;
     const nextDay = Math.ceil(limitDay / 7) * 7;
     for (let i = 1; i <= nextDay - limitDay; i++) {
-      calendarItems.push(<div key={`next_${i}`} className="next_month_date"></div>);
+      calendarItems.push(
+        <div key={`next_${i}`} className="next_month_date"></div>
+      );
     }
 
     return calendarItems;
@@ -65,8 +79,8 @@ export default function DatePicker({ setOpenPicker, todayDate, selectMonth, setS
   }, [pickerMonth]);
   return (
     <div className="w-full h-full center-absolute flex-center bg-[#000000ab] z-50">
-      <div className="w-[calc(100%-10px)] bg-[#fff] rounded-[8px] overflow-hidden">
-        <div className="bg-red-300 p-[8px] text-[#fff] text-center font-bold flex justify-between items-center">
+      <div className="w-[calc(100%-16px)] bg-[#fff] rounded-[8px] overflow-hidden">
+        <div className="bg-[#7366dd] p-[8px] text-[#fff] text-center font-bold flex justify-between items-center">
           <button onClick={() => handlePrevMonth()}>
             <FaChevronLeft />
           </button>
@@ -85,7 +99,10 @@ export default function DatePicker({ setOpenPicker, todayDate, selectMonth, setS
             <div>FRI</div>
             <div>SAT</div>
           </div>
-          <div id="calendar" className="calendar_body grid grid-cols-7 text-center">
+          <div
+            id="calendar"
+            className="calendar_body grid grid-cols-7 text-center"
+          >
             {renderCalendarBody()}
           </div>
         </div>
@@ -94,9 +111,9 @@ export default function DatePicker({ setOpenPicker, todayDate, selectMonth, setS
           onClick={() => {
             setOpenPicker((prev) => !prev);
           }}
-          className="block text-center bg-red-300 w-[calc(100%-20px)] mx-auto mb-[10px] font-bold text-[#fff] p-[8px]"
+          className="block text-center bg-[#7366dd] w-[calc(100%-20px)] mx-auto mb-[10px] font-bold text-[#fff] p-[8px]"
         >
-          CLOSE
+          Close
         </button>
       </div>
     </div>

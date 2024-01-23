@@ -71,11 +71,11 @@ export default function WriteWrap({
   };
 
   return (
-    <div className="w-[calc(100%-10px)] mx-auto">
+    <div className="w-[calc(100%-16px)] mx-auto">
       <div className="mt-[10px]">
         <LinkBtn handleViewSection={handleViewSection} icon={"back"} />
       </div>
-      <div className="bg-[#fff] w-full min-h-[400px] max-h-[400px] overflow-y-auto mx-auto rounded-[10px] relative shadow-lg mt-[4px] solid-border">
+      <div className="bg-[#fff] w-full min-h-[400px] max-h-[400px] overflow-y-auto mx-auto rounded-[4px] relative shadow-lg mt-[4px] solid-border">
         <CardToday month={selectMonth} day={todayDate} />
         <WriteForm
           selectMonth={selectMonth}

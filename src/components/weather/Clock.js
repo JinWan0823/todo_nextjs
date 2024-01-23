@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 export default function Clock() {
   const [currentTime, setCurrentTime] = useState(
-    new Date().toLocaleString("en-US", {
+    new Date().toLocaleString("ko-KR", {
       hour12: false,
       hour: "numeric",
       minute: "numeric",
@@ -12,7 +12,7 @@ export default function Clock() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTime(
-        new Date().toLocaleString("en-US", {
+        new Date().toLocaleString("ko-KR", {
           hour12: false,
           hour: "numeric",
           minute: "numeric",
