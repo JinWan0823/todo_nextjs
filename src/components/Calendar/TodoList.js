@@ -62,14 +62,14 @@ export default function TodoList({
       <div className="w-[64px] flex text-[#fff]">
         <button
           className={`small-button mr-[4px] ${
-            complete ? "bg-green-300" : "bg-gray-300"
+            complete ? "bg-[#3a7fea]" : "bg-gray-300"
           }`}
           onClick={() => handleTodoSuccess()}
         >
           <FaCheck />
         </button>
         <button
-          className="small-button bg-red-300 relative"
+          className="small-button bg-red-400 relative"
           onClick={() => handleDeleteList(index)}
         >
           <FaRegTrashAlt />

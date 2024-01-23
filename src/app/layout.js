@@ -8,10 +8,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html>
-      <body className="bg-[#fff] relative">
+      <body className="bg-[#dfdfdf] relative flex-center h-screen">
         <div
           id="wrap"
-          className="w-[374px] max-h-screen bg-[#ececec] my-0 mx-auto overflow-hidden relative overflow-y-auto  rounded-[10px]"
+          className="w-[374px] max-h-screen bg-[#fff] my-0 mx-auto overflow-hidden relative overflow-y-auto  rounded-[10px]"
         >
           {children}
           <p className="text-center py-[20px] text-sm text-[#d6d6d6]">

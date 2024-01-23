@@ -127,24 +127,6 @@ table {
   border-spacing: 0;
 }
 
-@font-face {
-  font-family: "NanumSquare";
-  font-weight: 400;
-  font-style: normal;
-  src: url("../../public/fonts/NanumSquareR.ttf") format("ttf");
-}
-
-@font-face {
-  font-family: "NanumSquare";
-  font-weight: 700;
-  font-style: normal;
-  src: url("../../public/fonts/NanumSquareB.ttf") format("ttf");
-}
-
-body {
-  font-family: "NanumSquare";
-}
-
 #wrap::-webkit-scrollbar {
   width: 4px;
 }
@@ -192,7 +174,7 @@ body {
   }
 
   .point-border {
-    border: 1px solid #ea4914;
+    border: 1px solid #3a7fea;
   }
 
   .select-box::before {
@@ -200,7 +182,7 @@ body {
     position: absolute;
     top: 6px;
     right: 8px;
-    color: #ea4914;
+    color: #3a7fea;
     font-size: 14px;
   }
 
@@ -228,7 +210,7 @@ body {
   }
 
   #list::-webkit-scrollbar-thumb {
-    background: #f1a8a8;
+    background: #3a7fea;
     border-radius: 10px;
   }
 
@@ -253,7 +235,7 @@ body {
     width: 42px;
     height: 42px;
     border-radius: 50%;
-    border: 1px solid #ba7b3b;
+    border: 1px solid #3a7fea;
     position: absolute;
     top: 50%;
     left: 50%;

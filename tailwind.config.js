@@ -16,6 +16,9 @@ module.exports = {
         lg: "20px",
         xl: "26px",
       },
+      boxShadow: {
+        card: "0px 1px 6px #d7d6d6",
+      },
     },
   },
   plugins: [],

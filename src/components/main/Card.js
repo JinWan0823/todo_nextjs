@@ -60,9 +60,12 @@ export default function Card({
   };
 
   return (
-    <li className="bg-[#fff] w-full overflow-hidden mx-auto rounded-[10px] relative shadow-lg mt-[4px] solid-border">
+    <li className="bg-[#fff] mb-[4px] w-full overflow-hidden mx-auto rounded-[4px] relative shadow-card mt-[4px]">
       <CardToday month={month} day={day} />
-      <ul className="min-h-[400px] max-h-[400px] overflow-y-auto " id="list">
+      <ul
+        className="min-h-[400px] max-h-[400px] overflow-y-auto border border-[#dfdfdf] "
+        id="list"
+      >
         {todoData && item.id ? (
           todoData.map((content, index) => (
             <TodoList

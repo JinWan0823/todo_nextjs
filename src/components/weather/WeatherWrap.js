@@ -47,7 +47,7 @@ export default function WeatherWrap() {
   }, [agreeLocation]);
 
   return (
-    <div className="w-full  flex-center relative py-[12px] pt-[62px]">
+    <div className="w-full  flex-center relative py-[20px] pt-[72px]">
       {weatherInfo && <WeatherBg weather={weatherInfo.weather[0].main} />}
       {weatherInfo && <WeatherInfo weatherInfo={weatherInfo} />}
       <button

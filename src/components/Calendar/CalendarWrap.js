@@ -61,7 +61,7 @@ export default function CalendarWrap({
           setOpenPicker={setOpenPicker}
         />
       )}
-      <div className="swiper-container w-[calc(100%-10px)] mx-auto">
+      <div className="swiper-container w-[calc(100%-16px)] mx-auto">
         <div className="flex justify-between items-center mt-[10px]">
           <div className="flex">
             <LinkBtn
