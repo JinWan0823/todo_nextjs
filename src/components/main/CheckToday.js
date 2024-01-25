@@ -14,7 +14,7 @@ export default function CheckToday() {
   const getTodayList = async () => {
     try {
       const data = await fetch(
-        `http://localhost:9999/todolist?month=${month}&date=${today}`
+        `https://uneven-pickle-verse.glitch.me/todolist?month=${month}&date=${today}`
       );
       const response = await data.json();
 

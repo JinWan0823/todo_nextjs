@@ -16,7 +16,9 @@ export default function WriteWrap({
 
   const createData = async (content) => {
     try {
-      const data = await fetch(`http://localhost:9999/todolist`);
+      const data = await fetch(
+        `https://uneven-pickle-verse.glitch.me/todolist`
+      );
       const response = await data.json();
 
       const filteredData = response.find(
@@ -25,31 +27,34 @@ export default function WriteWrap({
 
       if (!filteredData) {
         // 데이터가 없는경우 post요청으로 생성
-        const writeData = await fetch("http://localhost:9999/todolist", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            year: 24,
-            month: selectMonth,
-            date: todayDate,
-            content: [
-              {
-                todo: content,
-                success: false,
-              },
-            ],
-            success: false,
-          }),
-        });
+        const writeData = await fetch(
+          "https://uneven-pickle-verse.glitch.me/todolist",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              year: 24,
+              month: selectMonth,
+              date: todayDate,
+              content: [
+                {
+                  todo: content,
+                  success: false,
+                },
+              ],
+              success: false,
+            }),
+          }
+        );
       } else {
         const updateData = [
           ...filteredData.content,
           { todo: content, success: false },
         ];
         const writeData = await fetch(
-          `http://localhost:9999/todolist/${filteredData.id}`,
+          `https://uneven-pickle-verse.glitch.me/todolist/${filteredData.id}`,
           {
             method: "PUT",
             headers: {

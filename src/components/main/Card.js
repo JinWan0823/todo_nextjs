@@ -26,7 +26,7 @@ export default function Card({
     try {
       if (todoData.length <= 1) {
         const response = await fetch(
-          `http://localhost:9999/todolist/${item.id}`,
+          `https://uneven-pickle-verse.glitch.me/todolist/${item.id}`,
           {
             method: "DELETE",
             headers: {
@@ -41,7 +41,7 @@ export default function Card({
         setTodoData(updatedTodoData);
 
         const response = await fetch(
-          `http://localhost:9999/todolist/${item.id}`,
+          `https://uneven-pickle-verse.glitch.me/todolist/${item.id}`,
           {
             method: "PUT",
             headers: {

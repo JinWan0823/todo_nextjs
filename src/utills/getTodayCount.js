@@ -4,7 +4,7 @@ export const getTodayCount = async () => {
   const month = date.getMonth() + 1;
   try {
     const data = await fetch(
-      `http://localhost:9999/todolist?month=${month}&date=${today}`
+      `https://uneven-pickle-verse.glitch.me/todolist?month=${month}&date=${today}`
     );
     const response = await data.json();
 

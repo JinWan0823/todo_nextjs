@@ -23,7 +23,7 @@ export default function Home() {
   const getData = async () => {
     try {
       const response = await fetch(
-        `http://localhost:9999/todolist?month=${selectMonth}`
+        `https://uneven-pickle-verse.glitch.me/todolist?month=${selectMonth}`
       );
       const data = await response.json();
       setMonthData(data);

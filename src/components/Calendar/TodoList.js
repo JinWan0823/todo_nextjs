@@ -18,7 +18,7 @@ export default function TodoList({
   const handleTodoSuccess = async () => {
     try {
       const response = await fetch(
-        `http://localhost:9999/todolist?month=${month}&date=${day}`
+        `https://uneven-pickle-verse.glitch.me/todolist?month=${month}&date=${day}`
       );
       const dataArray = await response.json();
       const data = Array.isArray(dataArray) ? dataArray[0] : dataArray;
@@ -36,7 +36,7 @@ export default function TodoList({
       };
 
       const updateResponse = await fetch(
-        `http://localhost:9999/todolist/${data.id}`,
+        `https://uneven-pickle-verse.glitch.me/todolist/${data.id}`,
         {
           method: "PUT",
           headers: {
