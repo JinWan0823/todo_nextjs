@@ -2,8 +2,9 @@ import RecoilRootProvider from "@/components/RecoilRootProvider";
 import "./globals.css";
 
 export const metadata = {
-  title: "TodoList",
-  description: "nextjs를 이용한 todolist입니다.",
+  title: "Calendar Todolist",
+  description:
+    "달력과 각각의 날짜 카드에 투두리스트 기능이 사용가능한 웹 어플리케이션입니다.",
 };
 
 export default function RootLayout({ children }) {
@@ -13,7 +14,7 @@ export default function RootLayout({ children }) {
         <RecoilRootProvider>
           <div
             id="wrap"
-            className="w-[374px] max-h-screen bg-[#fff] my-0 mx-auto overflow-hidden relative overflow-y-auto  rounded-[10px]"
+            className="md:min-h-screen w-[374px] md:w-full max-h-screen h-auto bg-[#fff] my-0 mx-auto overflow-hidden relative overflow-y-auto rounded-[10px] md:rounded-0"
           >
             {children}
             <p className="text-center py-[20px] text-sm text-[#d6d6d6]">
